@@ -3,8 +3,12 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Hello</h1>
-      <p>I am Shad</p>
+      <div className="student-form-container">
+        <form className="student-form">
+          <input type="text" />
+          <button type="submit">Add Student</button>
+        </form>
+      </div>
     </>
   );
 }
