@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   const [edit, setEdit] = useState(false);
-  const [studentName, setStudentName] = useState();
+  const [studentName, setStudentName] = useState("");
 
   const submitHandeler = (studentName) => {
     setStudentName(studentName);
