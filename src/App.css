@@ -1,0 +1,14 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.studentSection{
+    gap: 20px;
+   display: flex;
+   justify-content: center;
+}
+
+.list{
+    border: 1px solid #000;
+}

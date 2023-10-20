@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [edit, setEdit] = useState(false);
+  const [studentList, setStudentList] = useState([]);
   const [studentName, setStudentName] = useState("");
 
   const submitHandeler = (studentName) => {
@@ -26,6 +27,17 @@ function App() {
             {edit ? "Update Student" : "Add Student"}
           </button>
         </form>
+        <div className="studentSection">
+          <div className="list allStudentList">
+            <h2>All Student List</h2>
+          </div>
+          <div className="list presentStudentList">
+            <h2>Present Student List</h2>
+          </div>
+          <div className="list absentStudentList">
+            <h2>Absent Student List</h2>
+          </div>
+        </div>
       </div>
     </>
   );
