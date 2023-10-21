@@ -2,11 +2,17 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [edit, setEdit] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [studentList, setStudentList] = useState([]);
   const [studentName, setStudentName] = useState("");
 
-  const submitHandler = (studentName) => {};
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!studentName) {
+      return alert("Please enter a student's name");
+    }
+    editMode ? createHandler() : updateHandler();
+  };
   const editHandler = (student) => {};
   const removeHandler = (studentId) => {};
   const createHandler = () => {
@@ -18,7 +24,7 @@ function App() {
     setStudentList(...studentList, newStudent);
     setStudentName("");
   };
-
+  const updateHandler = () => {};
   return (
     <>
       <div className="student-form-container">
@@ -33,7 +39,7 @@ function App() {
           {console.log(studentName)}
 
           <button type="submit">
-            {edit ? "Update Student" : "Add Student"}
+            {editMode ? "Update Student" : "Add Student"}
           </button>
         </form>
         <div className="studentSection">
