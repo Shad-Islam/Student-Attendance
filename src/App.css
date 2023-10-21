@@ -23,6 +23,11 @@
     padding: 20px;
 }
 
+.list ul{
+display: flex;
+flex-direction: column;
+}
+
 .list ul li{
     gap:5px;
     margin: 5px;
