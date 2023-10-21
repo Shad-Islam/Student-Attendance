@@ -6,11 +6,18 @@ function App() {
   const [studentList, setStudentList] = useState([]);
   const [studentName, setStudentName] = useState("");
 
-  const submitHandler = (studentName) => {
-    setStudentName(studentName);
-  };
+  const submitHandler = (studentName) => {};
   const editHandler = (student) => {};
   const removeHandler = (studentId) => {};
+  const createHandler = () => {
+    const newStudent = {
+      id: Date.now() + "",
+      name: studentName,
+      isPresent: undefined,
+    };
+    setStudentList(...studentList, newStudent);
+    setStudentName("");
+  };
 
   return (
     <>
@@ -20,7 +27,7 @@ function App() {
             type="text"
             value={studentName}
             onChange={(e) => {
-              submitHandler(e.target.value);
+              setStudentName(e.target.value);
             }}
           />
           {console.log(studentName)}
