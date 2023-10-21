@@ -6,9 +6,11 @@ function App() {
   const [studentList, setStudentList] = useState([]);
   const [studentName, setStudentName] = useState("");
 
-  const submitHandeler = (studentName) => {
+  const submitHandler = (studentName) => {
     setStudentName(studentName);
   };
+  const editHandler = (student) => {};
+  const removeHandler = (studentId) => {};
 
   return (
     <>
@@ -18,7 +20,7 @@ function App() {
             type="text"
             value={studentName}
             onChange={(e) => {
-              submitHandeler(e.target.value);
+              submitHandler(e.target.value);
             }}
           />
           {console.log(studentName)}
@@ -30,6 +32,29 @@ function App() {
         <div className="studentSection">
           <div className="list allStudentList">
             <h2>All Student List</h2>
+            <ul>
+              {studentList.map((student) => (
+                <i key={student.id}>
+                  <span>{student.id}</span>
+                  <button
+                    onClick={() => {
+                      editHandler(student);
+                    }}
+                  >
+                    edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      removeHandler(student.id);
+                    }}
+                  >
+                    remove
+                  </button>
+                  <button>make present</button>
+                  <button>make absent</button>
+                </i>
+              ))}
+            </ul>
           </div>
           <div className="list presentStudentList">
             <h2>Present Student List</h2>
