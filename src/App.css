@@ -1,7 +1,6 @@
 *{
     margin: 0px;
     padding: 0px;
-    background-color: aqua;
 }
 .student-form{
     gap: 10px;
@@ -22,6 +21,11 @@
 
 .list h2{
     padding: 20px;
+}
+
+.list ul{
+display: flex;
+flex-direction: column;
 }
 
 .list ul li{

@@ -55,6 +55,27 @@ function App() {
     setStudentList(newStudentList);
   };
 
+  // make present
+  const makePresentHandler = (student) => {
+    const newStudentList = studentList.map((item) => {
+      if (student.id === item.id) {
+        return { ...item, isPresent: true };
+      }
+      return item;
+    });
+    setStudentList(newStudentList);
+  };
+  // make absent
+  const makeAbsentHandler = (student) => {
+    const newStudentList = studentList.map((item) => {
+      if (item.id === student.id) {
+        return { ...item, isPresent: false };
+      }
+      return item;
+    });
+    setStudentList(newStudentList);
+  };
+
   return (
     <>
       <div className="student-form-container">
@@ -91,17 +112,41 @@ function App() {
                   >
                     remove
                   </button>
-                  <button>make present</button>
-                  <button>make absent</button>
+                  <button onClick={() => makePresentHandler(student)}>
+                    make present
+                  </button>
+                  <button onClick={() => makeAbsentHandler(student)}>
+                    make absent
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
           <div className="list presentStudentList">
             <h2>Present Student List</h2>
+            <ul>
+              {studentList
+                .filter((student) => student.isPresent === true)
+                .map((item) => (
+                  <li key={item.id}>
+                    <span>{item.name}</span>
+                    <button>Accidentally Added</button>
+                  </li>
+                ))}
+            </ul>
           </div>
           <div className="list absentStudentList">
             <h2>Absent Student List</h2>
+            <ul>
+              {studentList
+                .filter((student) => student.isPresent === false)
+                .map((item) => (
+                  <li key={item.id}>
+                    <span>{item.name}</span>
+                    <button>Accidentally Added</button>
+                  </li>
+                ))}
+            </ul>
           </div>
         </div>
       </div>
