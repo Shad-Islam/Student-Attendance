@@ -14,8 +14,6 @@ function App() {
     }
     editMode ? createHandler() : updateHandler();
   };
-
-  const removeHandler = (studentId) => {};
   // create student
   const createHandler = () => {
     const newStudent = {
@@ -46,6 +44,14 @@ function App() {
     setEditMode(true);
     setStudentName(student.name);
     setEditAbleStudent(student);
+  };
+
+  // remove student
+  const removeHandler = (studentId) => {
+    const newStudentList = studentList.filter(
+      (student) => studentId !== student.id
+    );
+    setStudentList(newStudentList);
   };
   return (
     <>
