@@ -2,7 +2,12 @@
     margin: 0px;
     padding: 0px;
 }
-
+.student-form{
+    gap: 10px;
+    display: flex;
+    padding-top: 30px;
+    justify-content: center;
+}
 .studentSection{
     gap: 20px;
     display: flex;
@@ -12,4 +17,19 @@
 
 .list{
     border: 1px solid #000;
+}
+
+.list h2{
+    padding: 20px;
+}
+
+.list ul li{
+    gap:5px;
+    margin: 5px;
+    display: flex;
+    list-style: none;
+}
+
+.list ul li button{
+    padding: 5px;
 }
