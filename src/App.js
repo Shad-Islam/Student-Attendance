@@ -5,7 +5,7 @@ function App() {
   const [editMode, setEditMode] = useState(false);
   const [studentList, setStudentList] = useState([]);
   const [studentName, setStudentName] = useState("");
-  const [editAbleStudent, setAditAbleStudent] = useState(null);
+  const [editAbleStudent, setEditAbleStudent] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -26,11 +26,26 @@ function App() {
     setStudentList(...studentList, newStudent);
     setStudentName("");
   };
-  const updateHandler = () => {};
+
+  // update student
+  const updateHandler = () => {
+    const updateStudentList = studentList.map((student) => {
+      if (student.id === editAbleStudent(student.id)) {
+        return { ...student, name: studentName };
+      }
+      return;
+    });
+    setStudentList(updateStudentList);
+    setEditAbleStudent(null);
+    setStudentName("");
+    setEditMode(false);
+  };
+
+  // edit student
   const editHandler = (student) => {
     setEditMode(true);
     setStudentName(student.name);
-    setAditAbleStudent(student);
+    setEditAbleStudent(student);
   };
   return (
     <>
