@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -12,26 +12,27 @@ function App() {
     if (!studentName) {
       return alert("Please enter a student's name");
     }
-    editMode ? createHandler() : updateHandler();
+    editMode ? updateHandler() : createHandler();
   };
-  // create student
+
+  // Create student
   const createHandler = () => {
     const newStudent = {
       id: Date.now() + "",
       name: studentName,
       isPresent: undefined,
     };
-    setStudentList(...studentList, newStudent);
+    setStudentList([...studentList, newStudent]);
     setStudentName("");
   };
 
-  // update student
+  // Update student
   const updateHandler = () => {
     const updateStudentList = studentList.map((student) => {
-      if (student.id === editAbleStudent(student.id)) {
+      if (student.id === editAbleStudent.id) {
         return { ...student, name: studentName };
       }
-      return;
+      return student;
     });
     setStudentList(updateStudentList);
     setEditAbleStudent(null);
@@ -39,20 +40,21 @@ function App() {
     setEditMode(false);
   };
 
-  // edit student
+  // Edit student
   const editHandler = (student) => {
     setEditMode(true);
     setStudentName(student.name);
     setEditAbleStudent(student);
   };
 
-  // remove student
+  // Remove student
   const removeHandler = (studentId) => {
     const newStudentList = studentList.filter(
       (student) => studentId !== student.id
     );
     setStudentList(newStudentList);
   };
+
   return (
     <>
       <div className="student-form-container">
@@ -64,8 +66,6 @@ function App() {
               setStudentName(e.target.value);
             }}
           />
-          {console.log(studentName)}
-
           <button type="submit">
             {editMode ? "Update Student" : "Add Student"}
           </button>
@@ -75,8 +75,8 @@ function App() {
             <h2>All Student List</h2>
             <ul>
               {studentList.map((student) => (
-                <i key={student.id}>
-                  <span>{student.id}</span>
+                <li key={student.id}>
+                  <span>{student.name}</span>
                   <button
                     onClick={() => {
                       editHandler(student);
@@ -93,7 +93,7 @@ function App() {
                   </button>
                   <button>make present</button>
                   <button>make absent</button>
-                </i>
+                </li>
               ))}
             </ul>
           </div>
