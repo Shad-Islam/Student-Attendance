@@ -5,6 +5,7 @@ function App() {
   const [editMode, setEditMode] = useState(false);
   const [studentList, setStudentList] = useState([]);
   const [studentName, setStudentName] = useState("");
+  const [editAbleStudent, setAditAbleStudent] = useState(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -13,8 +14,9 @@ function App() {
     }
     editMode ? createHandler() : updateHandler();
   };
-  const editHandler = (student) => {};
+
   const removeHandler = (studentId) => {};
+  // create student
   const createHandler = () => {
     const newStudent = {
       id: Date.now() + "",
@@ -25,10 +27,15 @@ function App() {
     setStudentName("");
   };
   const updateHandler = () => {};
+  const editHandler = (student) => {
+    setEditMode(true);
+    setStudentName(student.name);
+    setAditAbleStudent(student);
+  };
   return (
     <>
       <div className="student-form-container">
-        <form className="student-form">
+        <form className="student-form" onSubmit={submitHandler}>
           <input
             type="text"
             value={studentName}
