@@ -5,8 +5,9 @@
 
 .studentSection{
     gap: 20px;
-   display: flex;
-   justify-content: center;
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
 }
 
 .list{
