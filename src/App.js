@@ -87,7 +87,7 @@ function App() {
               setStudentName(e.target.value);
             }}
           />
-          <button type="submit">
+          <button type="submit" className="create-edit-btn">
             {editMode ? "Update Student" : "Add Student"}
           </button>
         </form>
