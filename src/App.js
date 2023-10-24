@@ -57,6 +57,9 @@ function App() {
 
   // make present
   const makePresentHandler = (student) => {
+    if (student.isPresent === true || student.isPresent === false) {
+      return alert("THe student is already in a list");
+    }
     const newStudentList = studentList.map((item) => {
       if (student.id === item.id) {
         return { ...item, isPresent: true };
@@ -67,6 +70,9 @@ function App() {
   };
   // make absent
   const makeAbsentHandler = (student) => {
+    if (student.isPresent === true || student.isPresent === false) {
+      return alert("THe student is already in a list");
+    }
     const newStudentList = studentList.map((item) => {
       if (item.id === student.id) {
         return { ...item, isPresent: false };
