@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { StudentForm } from "./components/StudentForm";
 
 function App() {
   const [editMode, setEditMode] = useState(false);
@@ -96,18 +97,7 @@ function App() {
   return (
     <>
       <div className="student-form-container">
-        <form className="student-form" onSubmit={submitHandler}>
-          <input
-            type="text"
-            value={studentName}
-            onChange={(e) => {
-              setStudentName(e.target.value);
-            }}
-          />
-          <button type="submit" className="create-edit-btn">
-            {editMode ? "Update Student" : "Add Student"}
-          </button>
-        </form>
+        <StudentForm />
         <div className="studentSection">
           <div className="list allStudentList">
             <h2>All Student List</h2>
