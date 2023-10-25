@@ -82,6 +82,17 @@ function App() {
     setStudentList(newStudentList);
   };
 
+  // toggole handler
+  const toggleHandler = (student) => {
+    const newStudentList = studentList.map((item) => {
+      if (item.id === student.id) {
+        return { ...item, isPresent: !student.isPresent };
+      }
+      return item;
+    });
+    setStudentList(newStudentList);
+  };
+
   return (
     <>
       <div className="student-form-container">
@@ -136,7 +147,13 @@ function App() {
                 .map((item) => (
                   <li key={item.id}>
                     <span>{item.name}</span>
-                    <button>Accidentally Added</button>
+                    <button
+                      onClick={() => {
+                        toggleHandler(item);
+                      }}
+                    >
+                      Accidentally Added
+                    </button>
                   </li>
                 ))}
             </ul>
@@ -149,7 +166,13 @@ function App() {
                 .map((item) => (
                   <li key={item.id}>
                     <span>{item.name}</span>
-                    <button>Accidentally Added</button>
+                    <button
+                      onClick={() => {
+                        toggleHandler(item);
+                      }}
+                    >
+                      Accidentally Added
+                    </button>
                   </li>
                 ))}
             </ul>
