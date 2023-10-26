@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { StudentForm } from "./components/StudentForm";
+import AllStudentList from "./components/AllStudentList";
 
 function App() {
   const [editMode, setEditMode] = useState(false);
@@ -101,33 +102,7 @@ function App() {
         <div className="studentSection">
           <div className="list allStudentList">
             <h2>All Student List</h2>
-            <ul>
-              {studentList.map((student) => (
-                <li key={student.id}>
-                  <span>{student.name}</span>
-                  <button
-                    onClick={() => {
-                      editHandler(student);
-                    }}
-                  >
-                    edit
-                  </button>
-                  <button
-                    onClick={() => {
-                      removeHandler(student.id);
-                    }}
-                  >
-                    remove
-                  </button>
-                  <button onClick={() => makePresentHandler(student)}>
-                    make present
-                  </button>
-                  <button onClick={() => makeAbsentHandler(student)}>
-                    make absent
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <AllStudentList />
           </div>
           <div className="list presentStudentList">
             <h2>Present Student List</h2>
