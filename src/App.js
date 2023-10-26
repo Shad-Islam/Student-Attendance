@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import { StudentForm } from "./components/StudentForm";
 import AllStudentList from "./components/AllStudentList";
+import PresentStudentList from "./components/PresentStudentList";
+import AbsentStudentList from "./components/AbsentStudentList";
 
 function App() {
   const [editMode, setEditMode] = useState(false);
@@ -100,48 +102,9 @@ function App() {
       <div className="student-form-container">
         <StudentForm />
         <div className="studentSection">
-          <div className="list allStudentList">
-            <h2>All Student List</h2>
-            <AllStudentList />
-          </div>
-          <div className="list presentStudentList">
-            <h2>Present Student List</h2>
-            <ul>
-              {studentList
-                .filter((student) => student.isPresent === true)
-                .map((item) => (
-                  <li key={item.id}>
-                    <span>{item.name}</span>
-                    <button
-                      onClick={() => {
-                        toggleHandler(item);
-                      }}
-                    >
-                      Accidentally Added
-                    </button>
-                  </li>
-                ))}
-            </ul>
-          </div>
-          <div className="list absentStudentList">
-            <h2>Absent Student List</h2>
-            <ul>
-              {studentList
-                .filter((student) => student.isPresent === false)
-                .map((item) => (
-                  <li key={item.id}>
-                    <span>{item.name}</span>
-                    <button
-                      onClick={() => {
-                        toggleHandler(item);
-                      }}
-                    >
-                      Accidentally Added
-                    </button>
-                  </li>
-                ))}
-            </ul>
-          </div>
+          <AllStudentList />
+          <PresentStudentList />
+          <AbsentStudentList />
         </div>
       </div>
     </>
