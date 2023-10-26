@@ -4,6 +4,7 @@ import { StudentForm } from "./components/StudentForm";
 import AllStudentList from "./components/AllStudentList";
 import PresentStudentList from "./components/PresentStudentList";
 import AbsentStudentList from "./components/AbsentStudentList";
+import StudentSection from "./components/StudentSection";
 
 function App() {
   const [editMode, setEditMode] = useState(false);
@@ -101,11 +102,7 @@ function App() {
     <>
       <div className="student-form-container">
         <StudentForm />
-        <div className="studentSection">
-          <AllStudentList />
-          <PresentStudentList />
-          <AbsentStudentList />
-        </div>
+        <StudentSection />
       </div>
     </>
   );
