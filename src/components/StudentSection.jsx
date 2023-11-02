@@ -24,10 +24,10 @@ function StudentSection(props) {
           setStudentName={props.setStudentName}
           setEditAbleStudent={props.setEditAbleStudent}
         />
-        <PresentStudentList
+        {/* <PresentStudentList
           toggleHandler={toggleHandler}
           studentList={props.studentList}
-        />
+        /> */}
         <AbsentStudentList
           toggleHandler={toggleHandler}
           studentList={props.studentList}
