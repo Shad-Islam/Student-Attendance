@@ -1,50 +1,58 @@
 import React from "react";
+import { useContext } from "react";
+import StudentContext from "../context/StudentProvider";
 
-export const StudentForm = (props) => {
+export const StudentForm = () => {
+  const StudentContextValue = useContext(StudentContext);
+
+  // submit handler
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!props.studentName) {
+    if (!StudentContextValue.studentName) {
       return alert("Please enter a student's name");
     }
-    props.editMode ? updateHandler() : createHandler();
+    StudentContextValue.editMode ? updateHandler() : createHandler();
   };
 
   // Create student
   const createHandler = () => {
     const newStudent = {
       id: Date.now() + "",
-      name: props.studentName,
+      name: StudentContextValue.studentName,
       isPresent: undefined,
     };
-    props.setStudentList([...props.studentList, newStudent]);
-    props.setStudentName("");
+    StudentContextValue.setStudentList([
+      ...StudentContextValue.studentList,
+      newStudent,
+    ]);
+    StudentContextValue.setStudentName("");
   };
 
   // Update student
   const updateHandler = () => {
-    const updateStudentList = props.studentList.map((student) => {
-      if (student.id === props.editAbleStudent.id) {
-        return { ...student, name: props.studentName };
+    const updateStudentList = StudentContextValue.studentList.map((student) => {
+      if (student.id === StudentContextValue.editAbleStudent.id) {
+        return { ...student, name: StudentContextValue.studentName };
       }
       return student;
     });
-    props.setStudentList(updateStudentList);
-    props.setEditAbleStudent(null);
-    props.setStudentName("");
-    props.setEditMode(false);
+    StudentContextValue.setStudentList(updateStudentList);
+    StudentContextValue.setEditAbleStudent(null);
+    StudentContextValue.setStudentName("");
+    StudentContextValue.setEditMode(false);
   };
   return (
     <div>
       <form className="student-form" onSubmit={submitHandler}>
         <input
           type="text"
-          value={props.studentName}
+          value={StudentContextValue.studentName}
           onChange={(e) => {
-            props.setStudentName(e.target.value);
+            StudentContextValue.setStudentName(e.target.value);
           }}
         />
         <button type="submit" className="create-edit-btn">
-          {props.editMode ? "Update Student" : "Add Student"}
+          {StudentContextValue.editMode ? "Update Student" : "Add Student"}
         </button>
       </form>
     </div>
