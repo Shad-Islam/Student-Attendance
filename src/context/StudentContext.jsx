@@ -1,7 +1,10 @@
 import React from "react";
+import { createContext } from "react";
 
-function StudentContext() {
-  return <div>StudentContext</div>;
+const StudentContext = createContext();
+
+function StudentProvider({ child }) {
+  return <StudentContext.Provider>{child}</StudentContext.Provider>;
 }
 
-export default StudentContext;
+export default StudentProvider;
