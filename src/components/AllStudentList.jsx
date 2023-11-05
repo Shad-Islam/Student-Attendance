@@ -1,19 +1,22 @@
 import React from "react";
+import { useContext } from "react";
+import { StudentContext } from "../context/StudentProvider";
 
-function AllStudentList(props) {
+function AllStudentList() {
+  const StudentContextValue = useContext(StudentContext);
   // Edit student
   const editHandler = (student) => {
-    props.setEditMode(true);
-    props.setStudentName(student.name);
-    props.setEditAbleStudent(student);
+    StudentContextValue.setEditMode(true);
+    StudentContextValue.setStudentName(student.name);
+    StudentContextValue.setEditAbleStudent(student);
   };
 
   // Remove student
   const removeHandler = (studentId) => {
-    const newStudentList = props.studentList.filter(
+    const newStudentList = StudentContextValue.studentList.filter(
       (student) => studentId !== student.id
     );
-    props.setStudentList(newStudentList);
+    StudentContextValue.setStudentList(newStudentList);
   };
 
   // make present
@@ -21,33 +24,33 @@ function AllStudentList(props) {
     if (student.isPresent === true || student.isPresent === false) {
       return alert("THe student is already in a list");
     }
-    const newStudentList = props.studentList.map((item) => {
+    const newStudentList = StudentContextValue.studentList.map((item) => {
       if (student.id === item.id) {
         return { ...item, isPresent: true };
       }
       return item;
     });
-    props.setStudentList(newStudentList);
+    StudentContextValue.setStudentList(newStudentList);
   };
   // make absent
   const makeAbsentHandler = (student) => {
     if (student.isPresent === true || student.isPresent === false) {
       return alert("THe student is already in a list");
     }
-    const newStudentList = props.studentList.map((item) => {
+    const newStudentList = StudentContextValue.studentList.map((item) => {
       if (item.id === student.id) {
         return { ...item, isPresent: false };
       }
       return item;
     });
-    props.setStudentList(newStudentList);
+    StudentContextValue.setStudentList(newStudentList);
   };
   return (
     <>
       <div className="list allStudentList">
         <h2>All Student List</h2>
         <ul>
-          {props.studentList.map((student) => (
+          {StudentContextValue.studentList.map((student) => (
             <li key={student.id}>
               <span>{student.name}</span>
               <button

@@ -20,13 +20,7 @@ function StudentSection() {
   return (
     <>
       <div className="studentSection">
-        <AllStudentList
-          studentList={StudentContextValue.studentList}
-          setEditMode={StudentContextValue.setEditMode}
-          setStudentList={StudentContextValue.setStudentList}
-          setStudentName={StudentContextValue.setStudentName}
-          setEditAbleStudent={StudentContextValue.setEditAbleStudent}
-        />
+        <AllStudentList />
         <PresentStudentList toggleHandler={toggleHandler} />
         <AbsentStudentList toggleHandler={toggleHandler} />
       </div>
