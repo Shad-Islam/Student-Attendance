@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createContext } from "react";
 
-const StudentContext = createContext();
+export const StudentContext = createContext();
 
 const StudentProvider = ({ children }) => {
   const [studentName, setStudentName] = useState("");

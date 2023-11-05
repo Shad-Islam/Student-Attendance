@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import StudentContext from "../context/StudentProvider";
-function AbsentStudentList() {
+function AbsentStudentList(props) {
   const StudentContextValue = useContext(StudentContext);
   return (
     <>
@@ -15,7 +15,7 @@ function AbsentStudentList() {
                 <span>{item.name}</span>
                 <button
                   onClick={() => {
-                    StudentContextValue.toggleHandler(item);
+                    props.toggleHandler(item);
                   }}
                 >
                   Accidentally Added
