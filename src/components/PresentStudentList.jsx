@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import StudentContext from "../context/StudentProvider";
+import { StudentContext } from "../context/StudentProvider";
 
 function PresentStudentList(props) {
   const StudentContextValue = useContext(StudentContext);

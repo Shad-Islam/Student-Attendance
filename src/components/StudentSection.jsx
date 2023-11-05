@@ -3,7 +3,7 @@ import AllStudentList from "./AllStudentList";
 import AbsentStudentList from "./AbsentStudentList";
 import PresentStudentList from "./PresentStudentList";
 import { useContext } from "react";
-import StudentContext from "../context/StudentProvider";
+import { StudentContext } from "../context/StudentProvider";
 
 function StudentSection() {
   const StudentContextValue = useContext(StudentContext);

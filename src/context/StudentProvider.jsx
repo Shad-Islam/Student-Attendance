@@ -9,7 +9,7 @@ const StudentProvider = ({ children }) => {
   const [studentList, setStudentList] = useState([]);
   const [editAbleStudent, setEditAbleStudent] = useState(null);
 
-  const contextValu = {
+  const contextValue = {
     editMode,
     setEditMode,
     studentName,
@@ -20,7 +20,7 @@ const StudentProvider = ({ children }) => {
     setEditAbleStudent,
   };
   return (
-    <StudentContext.Provider value={contextValu}>
+    <StudentContext.Provider value={contextValue}>
       {children}
     </StudentContext.Provider>
   );

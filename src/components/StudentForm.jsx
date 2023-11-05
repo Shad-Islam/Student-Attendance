@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import StudentContext from "../context/StudentProvider";
+import { StudentContext } from "../context/StudentProvider";
 
 export const StudentForm = () => {
   const StudentContextValue = useContext(StudentContext);
