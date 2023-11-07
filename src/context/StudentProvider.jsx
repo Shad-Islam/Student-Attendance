@@ -103,18 +103,18 @@ const StudentProvider = ({ children }) => {
     setEditMode,
     studentName,
     studentList,
-    setStudentList,
-    setStudentName,
-    editAbleStudent,
-    setEditAbleStudent,
     editHandler,
+    toggleHandler,
     createHandler,
     removeHandler,
     submitHandler,
     updateHandler,
+    setStudentList,
+    setStudentName,
+    editAbleStudent,
     makeAbsentHandler,
     makePresentHandler,
-    toggleHandler,
+    setEditAbleStudent,
   };
   return (
     <StudentContext.Provider value={contextValue}>
