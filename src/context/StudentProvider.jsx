@@ -53,6 +53,40 @@ const StudentProvider = ({ children }) => {
     setStudentList(newStudentList);
   };
 
+  // submit handler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!studentName) {
+      return alert("Please enter a student's name");
+    }
+    editMode ? updateHandler() : createHandler();
+  };
+
+  // Create student
+  const createHandler = () => {
+    const newStudent = {
+      id: Date.now() + "",
+      name: studentName,
+      isPresent: undefined,
+    };
+    setStudentList([...studentList, newStudent]);
+    setStudentName("");
+  };
+
+  // Update student
+  const updateHandler = () => {
+    const updateStudentList = studentList.map((student) => {
+      if (student.id === editAbleStudent.id) {
+        return { ...student, name: studentName };
+      }
+      return student;
+    });
+    setStudentList(updateStudentList);
+    setEditAbleStudent(null);
+    setStudentName("");
+    setEditMode(false);
+  };
+
   const contextValue = {
     editMode,
     setEditMode,
@@ -63,7 +97,10 @@ const StudentProvider = ({ children }) => {
     editAbleStudent,
     setEditAbleStudent,
     editHandler,
+    createHandler,
     removeHandler,
+    submitHandler,
+    updateHandler,
     makeAbsentHandler,
     makePresentHandler,
   };
