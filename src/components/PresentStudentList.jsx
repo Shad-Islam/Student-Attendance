@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { StudentContext } from "../context/StudentProvider";
 
-function PresentStudentList(props) {
+function PresentStudentList() {
   const StudentContextValue = useContext(StudentContext);
 
   return (
@@ -17,7 +17,7 @@ function PresentStudentList(props) {
                 <span>{item.name}</span>
                 <button
                   onClick={() => {
-                    props.toggleHandler(item);
+                    StudentContextValue.toggleHandler(item);
                   }}
                 >
                   Accidentally Added

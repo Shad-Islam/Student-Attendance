@@ -87,6 +87,17 @@ const StudentProvider = ({ children }) => {
     setEditMode(false);
   };
 
+  // toggole handler
+  const toggleHandler = (student) => {
+    const newStudentList = studentList.map((item) => {
+      if (item.id === student.id) {
+        return { ...item, isPresent: !student.isPresent };
+      }
+      return item;
+    });
+    setStudentList(newStudentList);
+  };
+
   const contextValue = {
     editMode,
     setEditMode,
@@ -103,6 +114,7 @@ const StudentProvider = ({ children }) => {
     updateHandler,
     makeAbsentHandler,
     makePresentHandler,
+    toggleHandler,
   };
   return (
     <StudentContext.Provider value={contextValue}>
