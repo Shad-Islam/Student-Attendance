@@ -3,21 +3,28 @@ import { useContext } from "react";
 import { StudentContext } from "../context/StudentProvider";
 
 function PresentStudentList() {
-  const StudentContextValue = useContext(StudentContext);
+  const { studentStates, dispatch } = useContext(StudentContext);
 
   return (
     <>
       <div className="list presentStudentList">
         <h2>Present Student List</h2>
         <ul>
-          {StudentContextValue.studentList
+          {studentStates.studentList
             .filter((student) => student.isPresent === true)
             .map((item) => (
               <li key={item.id}>
                 <span>{item.name}</span>
                 <button
                   onClick={() => {
-                    StudentContextValue.toggleHandler(item);
+                    dispatch({
+                      type: "UPDATE_STUDENT",
+                      payload: {
+                        studentID: item.id,
+                        propertyName: "isPresent",
+                        propertyValue: !item.isPresent,
+                      },
+                    });
                   }}
                 >
                   Accidentally Added
