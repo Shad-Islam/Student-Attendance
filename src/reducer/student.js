@@ -28,6 +28,24 @@ export const studentReducer = (state, action) => {
       };
     }
     case "UPDATE-STUDENT": {
+      return {
+        ...state,
+        studentList: state.studentList.map((student) => {
+          if (student.id === action.payload.studentID) {
+            return {
+              ...student,
+              [action.payload.propertyName]: action.payload.propertyValue,
+            };
+          }
+          return student;
+        }),
+        editMode:
+          action.payload.propertyName === "name" ? false : state.editMode,
+        editAbleStudent:
+          action.payload.propertyName === "name" ? null : state.editAbleStudent,
+        studentName:
+          action.payload.propertName === "name" ? "" : state.studentName,
+      };
     }
     case "REMOVE_SSTUDENT": {
       return {
