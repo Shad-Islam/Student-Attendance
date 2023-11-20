@@ -27,9 +27,27 @@ export const studentReducer = (state, action) => {
         studentName: action.payload.name,
       };
     }
-    case "UPDATE-STUDENT": {
+    case "UPDATE_STUDENT": {
+      return {
+        ...state,
+        studentList: state.studentList.map((student) => {
+          if (student.id === action.payload.studentID) {
+            return {
+              ...student,
+              [action.payload.propertyName]: action.payload.propertyValue,
+            };
+          }
+          return student;
+        }),
+        editMode:
+          action.payload.propertyName === "name" ? false : state.editMode,
+        editAbleStudent:
+          action.payload.propertyName === "name" ? null : state.editAbleStudent,
+        studentName:
+          action.payload.propertyName === "name" ? "" : state.studentName,
+      };
     }
-    case "REMOVE_SSTUDENT": {
+    case "REMOVE_STUDENT": {
       return {
         ...state,
         studentList: state.studentList.filter(

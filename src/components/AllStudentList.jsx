@@ -3,37 +3,55 @@ import { useContext } from "react";
 import { StudentContext } from "../context/StudentProvider";
 
 function AllStudentList() {
-  const StudentContextValue = useContext(StudentContext);
+  const { studentStates, dispatch } = useContext(StudentContext);
 
   return (
     <>
       <div className="list allStudentList">
         <h2>All Student List</h2>
         <ul>
-          {StudentContextValue.studentList.map((student) => (
+          {studentStates.studentList.map((student) => (
             <li key={student.id}>
               <span>{student.name}</span>
               <button
                 onClick={() => {
-                  StudentContextValue.editHandler(student);
+                  dispatch({ type: "EDIT_STUDENT", payload: student });
                 }}
               >
                 edit
               </button>
               <button
                 onClick={() => {
-                  StudentContextValue.removeHandler(student.id);
+                  dispatch({ type: "REMOVE_STUDENT", payload: student.id });
                 }}
               >
                 remove
               </button>
               <button
-                onClick={() => StudentContextValue.makePresentHandler(student)}
+                onClick={() =>
+                  dispatch({
+                    type: "UPDATE_STUDENT",
+                    payload: {
+                      studentID: student.id,
+                      propertyName: "isPresent",
+                      propertyValue: true,
+                    },
+                  })
+                }
               >
                 make present
               </button>
               <button
-                onClick={() => StudentContextValue.makeAbsentHandler(student)}
+                onClick={() =>
+                  dispatch({
+                    type: "UPDATE_STUDENT",
+                    payload: {
+                      studentID: student.id,
+                      propertyName: "isPresent",
+                      propertyValue: false,
+                    },
+                  })
+                }
               >
                 make absent
               </button>

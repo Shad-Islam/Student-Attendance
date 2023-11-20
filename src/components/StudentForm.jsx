@@ -3,23 +3,33 @@ import { useContext } from "react";
 import { StudentContext } from "../context/StudentProvider";
 
 export const StudentForm = () => {
-  const StudentContextValue = useContext(StudentContext);
+  const { studentStates, dispatch } = useContext(StudentContext);
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    studentStates.editMode
+      ? dispatch({
+          type: "UPDATE_STUDENT",
+          payload: {
+            studentID: studentStates.editAbleStudent.id,
+            propertyName: "name",
+            propertyValue: studentStates.studentName,
+          },
+        })
+      : dispatch({ type: "CREATE_STUDENT" });
+  };
   return (
     <div>
-      <form
-        className="student-form"
-        onSubmit={StudentContextValue.submitHandler}
-      >
+      <form className="student-form" onSubmit={submitHandler}>
         <input
           type="text"
-          value={StudentContextValue.studentName}
+          value={studentStates.studentName}
           onChange={(e) => {
-            StudentContextValue.setStudentName(e.target.value);
+            dispatch({ type: "CHANGE_STUDENT_NAME", payload: e.target.value });
           }}
         />
         <button type="submit" className="create-edit-btn">
-          {StudentContextValue.editMode ? "Update Student" : "Add Student"}
+          {studentStates.editMode ? "Update Student" : "Add Student"}
         </button>
       </form>
     </div>
