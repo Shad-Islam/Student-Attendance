@@ -7,6 +7,11 @@ export const StudentForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (studentStates.studentName.trim() === "") {
+      alert("Please provide a valid name");
+      return;
+    }
+
     studentStates.editMode
       ? dispatch({
           type: "UPDATE_STUDENT",
